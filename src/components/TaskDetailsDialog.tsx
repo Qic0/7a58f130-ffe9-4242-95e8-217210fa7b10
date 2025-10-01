@@ -35,11 +35,11 @@ interface TaskDetailsDialogProps {
 }
 const getPriorityColor = (priority: string) => {
   const colors = {
-    low: 'bg-muted text-muted-foreground',
+    low: 'bg-muted text-foreground',
     medium: 'bg-warning/10 text-warning-foreground',
     high: 'bg-destructive/10 text-destructive'
   };
-  return colors[priority as keyof typeof colors] || 'bg-muted text-muted-foreground';
+  return colors[priority as keyof typeof colors] || 'bg-muted text-foreground';
 };
 const getPriorityText = (priority: string) => {
   const texts = {
