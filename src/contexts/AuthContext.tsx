@@ -121,8 +121,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                   status: profile.status,
                   last_seen: profile.last_seen
                 });
-                // Set user online when they login
-                await supabase.rpc('set_user_online', { user_uuid: session.user.id });
               }
             } catch (error) {
               console.error('Error fetching user data:', error);
