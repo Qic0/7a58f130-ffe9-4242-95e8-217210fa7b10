@@ -369,44 +369,6 @@ const OrderDetailsDialog = ({
               </CardContent>
             </Card>
 
-          </div>
-
-          {/* Правая колонка */}
-          <div className="space-y-6">
-            {/* Задачи */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-display font-bold text-lg">Задачи по заказу</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {tasksLoading ? <div className="text-center py-4 text-muted-foreground">
-                      Загрузка задач...
-                    </div> : tasks.length === 0 ? <div className="text-center py-4 text-muted-foreground">
-                      Нет связанных задач
-                    </div> : tasks.map(task => <div key={task.id} className="flex items-center justify-between p-3 border rounded-lg">
-                        <div className="flex-1">
-                          <p className="font-semibold text-sm">{task.title}</p>
-                          <p className="text-xs text-muted-foreground">{task.assignee}</p>
-                        </div>
-                        <div className="text-right">
-                          <Badge variant={task.status === 'completed' ? 'default' : task.status === 'in_progress' ? 'secondary' : 'outline'} className="text-xs">
-                            {task.status === 'completed' ? 'Завершена' : task.status === 'in_progress' ? 'В работе' : task.status === 'pending' ? 'Ожидает' : task.status}
-                          </Badge>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {task.dueDate ? formatDate(task.dueDate) : '—'}
-                          </p>
-                        </div>
-                      </div>)}
-                 </div>
-                 <Button variant="outline" className="w-full mt-4" onClick={() => setIsCreateTaskDialogOpen(true)}>
-                   Добавить задачу
-                 </Button>
-                 
-                 <CreateTaskDialog open={isCreateTaskDialogOpen} onOpenChange={setIsCreateTaskDialogOpen} />
-              </CardContent>
-            </Card>
-
             {/* Прикрепленные файлы */}
             <Card>
               <CardHeader>
@@ -466,6 +428,44 @@ const OrderDetailsDialog = ({
                     readonly={false}
                   />
                 )}
+              </CardContent>
+            </Card>
+
+          </div>
+
+          {/* Правая колонка */}
+          <div className="space-y-6">
+            {/* Задачи */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-display font-bold text-lg">Задачи по заказу</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {tasksLoading ? <div className="text-center py-4 text-muted-foreground">
+                      Загрузка задач...
+                    </div> : tasks.length === 0 ? <div className="text-center py-4 text-muted-foreground">
+                      Нет связанных задач
+                    </div> : tasks.map(task => <div key={task.id} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex-1">
+                          <p className="font-semibold text-sm">{task.title}</p>
+                          <p className="text-xs text-muted-foreground">{task.assignee}</p>
+                        </div>
+                        <div className="text-right">
+                          <Badge variant={task.status === 'completed' ? 'default' : task.status === 'in_progress' ? 'secondary' : 'outline'} className="text-xs">
+                            {task.status === 'completed' ? 'Завершена' : task.status === 'in_progress' ? 'В работе' : task.status === 'pending' ? 'Ожидает' : task.status}
+                          </Badge>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {task.dueDate ? formatDate(task.dueDate) : '—'}
+                          </p>
+                        </div>
+                      </div>)}
+                 </div>
+                 <Button variant="outline" className="w-full mt-4" onClick={() => setIsCreateTaskDialogOpen(true)}>
+                   Добавить задачу
+                 </Button>
+                 
+                 <CreateTaskDialog open={isCreateTaskDialogOpen} onOpenChange={setIsCreateTaskDialogOpen} />
               </CardContent>
             </Card>
 
