@@ -250,9 +250,10 @@ const Workers = () => {
         if (isNaN(date.getTime())) return null;
         
         const now = new Date();
-        const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
+        const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
         
-        if (diffInMinutes < 1) return 'Только что';
+        if (diffInSeconds < 60) return `${diffInSeconds} сек назад`;
         if (diffInMinutes < 60) return `${diffInMinutes} мин назад`;
         if (diffInMinutes < 1440) return `${Math.floor(diffInMinutes / 60)} ч назад`;
         
